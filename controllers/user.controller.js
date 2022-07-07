@@ -11,7 +11,7 @@ module.exports = userController = {
 
       // Validate user input
       if (!(email && password && first_name && last_name)) {
-        res.status(400).send('All input is required');
+        return res.status(400).send('All input is required');
       }
 
       // check if user already exist
@@ -41,9 +41,9 @@ module.exports = userController = {
       user.token = token;
 
       // return new user
-      res.status(201).json(user);
+      return res.status(201).json(user);
     } catch (err) {
-      console.log(err);
+      return res.json({error: err.message})
     }
   },
   doLogin: async (req, res) => {
