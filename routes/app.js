@@ -6,6 +6,8 @@ const auth = require('../middleware/auth');
 
 const app = express();
 
+app.use(express.json());
+app.use(express.urlencoded({ extended: true }));
 app.use(require('./cart.route'));
 app.use(require('./ingredient.route'));
 app.use(require('./product.route'));
