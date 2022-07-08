@@ -1,10 +1,12 @@
 require('dotenv').config();
 require('../config/database').connect();
 const express = require('express');
+const cors = require('cors');
 
 const auth = require('../middleware/auth');
 
 const app = express();
+app.use(cors());
 
 app.use(express.json());
 app.use(express.urlencoded({ extended: true }));
@@ -12,7 +14,6 @@ app.use(require('./cart.route'));
 app.use(require('./ingredient.route'));
 app.use(require('./product.route'));
 app.use(require('./user.route'));
-
 
 app.use(express.json({ limit: '50mb' }));
 

@@ -7,10 +7,12 @@ module.exports = userController = {
   registerUser: async (req, res) => {
     try {
       // Get user input
-      const { first_name, last_name, email, password } = req.body;
+      const { firstname, lastname, email, password } = req.body;
+
+      console.log('firstname', 'lastname');
 
       // Validate user input
-      if (!(email && password && first_name && last_name)) {
+      if (!(email && password && firstname && lastname)) {
         return res.status(400).send('All input is required');
       }
 
@@ -24,11 +26,10 @@ module.exports = userController = {
 
       //Encrypt user password
       const encryptedPassword = await bcrypt.hash(password, 10);
-
       // Create user in our database
       const user = await User.create({
-        first_name,
-        last_name,
+        first_name: firstname,
+        last_name: lastname,
         email: email.toLowerCase(), // sanitize: convert email to lowercase
         password: encryptedPassword,
       });
@@ -43,7 +44,7 @@ module.exports = userController = {
       // return new user
       return res.status(201).json(user);
     } catch (err) {
-      return res.json({error: err.message})
+      return res.json({ error: err.message });
     }
   },
   doLogin: async (req, res) => {
