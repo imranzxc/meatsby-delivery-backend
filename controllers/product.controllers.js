@@ -1,14 +1,17 @@
-
 const Product = require('../models/Product.model');
 
 module.exports.productController = {
   postProduct: async (req, res) => {
     try {
       await Product.create({
-        user: req.body.user,
+        id: req.body.id,
         title: req.body.title,
-        image: req.body.image,
-        description: req.body.description,
+        price: req.body.price,
+        image01: req.body.image01,
+        image02: req.body.image02,
+        image03: req.body.image03,
+        category: req.body.category,
+        desc: req.body.desc,
       });
       res.json('Product created');
     } catch (err) {
@@ -36,10 +39,14 @@ module.exports.productController = {
   patchProduct: async (req, res) => {
     try {
       await Product.findByIdAndUpdate(req.params.id, {
-        user: req.body.user,
+        id: req.body.id,
         title: req.body.title,
-        image: req.body.image,
-        description: req.body.description,
+        price: req.body.price,
+        image01: req.body.image01,
+        image02: req.body.image02,
+        image03: req.body.image03,
+        category: req.body.category,
+        desc: req.body.desc,
       });
       res.json('Product updated');
     } catch (err) {

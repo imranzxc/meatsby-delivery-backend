@@ -11,7 +11,7 @@ module.exports.ingredientController = {
       });
       res.json('Ingredient created');
     } catch (err) {
-      res.json('Issues when Ingredient');
+      res.json('Issues when adding ingredient');
     }
   },
   getAllIngredients: async (req, res) => {
